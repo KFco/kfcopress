@@ -64,21 +64,28 @@
         },
         "filter": ["==", "name", ""]
       });
+      
+
 
       // When the user moves their mouse over the page, we look for features
       // at the mouse position (e.point) and within the states layer (states-fill).
       // If a feature is found, then we'll update the filter in the state-fills-hover
       // layer to only show that state, thus making a hover effect.
       map.on("mousemove", function (e) {
-        var features = map.queryRenderedFeatures(e.point, {
-          layers: ["travel"]
-        });
+        var features = map.queryRenderedFeatures(e.point, { layers: ["travel"] });
         if (features.length) {
           map.setFilter("travel-hover", ["==", "name", features[0].properties.name]);
         } else {
           map.setFilter("travel-hover", ["==", "name", ""]);
         }
       });
+      map.on('click', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ["travel"] });
+        if (!features.length) {
+          return;
+        }
+        window.location.href = features[0].properties.url;
+        });
 
       // Reset the state-fills-hover layer's filter when the mouse leaves the map
       map.on("mouseout", function () {
