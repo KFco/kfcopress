@@ -50,9 +50,23 @@
         "layout": {},
         "paint": {
           "fill-color": "#000",
-          "fill-opacity": 0
+          "fill-opacity": 0.0
         }
-      });
+      }, "country-label");
+
+      map.addLayer({
+        "id": "travel-border",
+        "type": "line",
+        "source": "kfcopress",
+        "source-layer": "kfcopress",
+        "layout": {},
+        "paint": {
+          "line-color": "#000",
+          "line-width": 2,
+          "line-opacity": 0.6
+        },
+        "filter": ["==", "name", ""]
+      }, "country-label");
 
       map.addLayer({
         "id": "travel-hover",
@@ -62,10 +76,10 @@
         "layout": {},
         "paint": {
           "fill-color": "#000",
-          "fill-opacity": 0.5
+          "fill-opacity": 0.4
         },
         "filter": ["==", "name", ""]
-      });
+      }, "country-label");
 
       // When the user moves their mouse over the page, we look for features
       // at the mouse position (e.point) and within the states layer (states-fill).
